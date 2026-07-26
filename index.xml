@@ -4,12 +4,13 @@
     <reapack
       name="AutoGradient"
       type="script"
-      desc="Automatic track color gradients using name rules">
+      desc="Automatic track color gradients and icons using name rules">
       <metadata>
         <description><![CDATA[
 AutoGradient watches track names and applies ordered, case-insensitive color
 rules. Matching groups receive scalable light-to-dark gradients in track-list
-order. AutoGradientConfig provides a ReaImGui editor and color picker.
+order. Rules may also assign REAPER track icons. AutoGradientConfig provides
+a ReaImGui color picker and searchable icon browser.
         ]]></description>
         <link rel="website">https://github.com/MorphoMonarchy/AutoGradient</link>
       </metadata>
@@ -19,6 +20,19 @@ order. AutoGradientConfig provides a ReaImGui editor and color picker.
         time="2026-07-26T00:35:59Z">
         <changelog><![CDATA[
 Initial ReaPack release.
+        ]]></changelog>
+        <source main="main">https://raw.githubusercontent.com/MorphoMonarchy/AutoGradient/9e2626e9a45f79e8f5f1eab1117a0855bbd86ae1/AutoGradient/AutoGradient.lua</source>
+        <source file="AutoGradientConfig.lua" main="main">https://raw.githubusercontent.com/MorphoMonarchy/AutoGradient/9e2626e9a45f79e8f5f1eab1117a0855bbd86ae1/AutoGradient/AutoGradientConfig.lua</source>
+        <source file="Settings.lua">https://raw.githubusercontent.com/MorphoMonarchy/AutoGradient/9e2626e9a45f79e8f5f1eab1117a0855bbd86ae1/AutoGradient/Settings.lua</source>
+      </version>
+      <version
+        name="1.1.0"
+        author="Morpho Monarchy Studios"
+        time="2026-07-26T00:48:05Z">
+        <changelog><![CDATA[
+Added optional REAPER track icons to rules.
+Added a searchable track-icon browser with thumbnail previews.
+Added default icons for the vox, perc, guitar, and bass rules.
         ]]></changelog>
         <source main="main">https://raw.githubusercontent.com/MorphoMonarchy/AutoGradient/master/AutoGradient/AutoGradient.lua</source>
         <source file="AutoGradientConfig.lua" main="main">https://raw.githubusercontent.com/MorphoMonarchy/AutoGradient/master/AutoGradient/AutoGradientConfig.lua</source>

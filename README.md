@@ -2,7 +2,7 @@
 
 # AutoGradient
 
-AutoGradient is a REAPER background script that automatically colors tracks from light to dark according to ordered, case-insensitive name rules.
+AutoGradient is a REAPER background script that automatically colors tracks from light to dark and optionally assigns track icons according to ordered, case-insensitive name rules.
 
 For example, tracks containing `guitar` are grouped together and receive variations of the guitar base color according to their order in the track list. If a track matches multiple rules, the rule nearest the top of the priority list wins.
 
@@ -10,10 +10,11 @@ For example, tracks containing `guitar` are grouped together and receive variati
 
 - Watches all tracks for renames, duplication, insertion, removal, and reordering.
 - Matches track names without regard to letter case.
-- Supports an ordered list of custom keywords and colors.
+- Supports an ordered list of custom keywords, colors, and track icons.
 - Generates a scalable light-to-dark gradient for each matching group.
 - Leaves tracks that match no rule unchanged.
 - Includes a ReaImGui configuration window with a color picker.
+- Includes a searchable thumbnail browser for REAPER's track icons.
 - Saves configuration persistently between REAPER sessions.
 
 ## Requirements
@@ -46,7 +47,7 @@ ReaPack installs both `AutoGradient` and `AutoGradientConfig` in REAPER's main A
 
 1. Open **Actions > Show action list**.
 2. Run `AutoGradient` to start the background watcher.
-3. Run `AutoGradientConfig` to add, delete, reorder, and recolor rules.
+3. Run `AutoGradientConfig` to add, delete, reorder, recolor, and assign track icons to rules.
 4. Click **Save** in the configuration window to apply changes. A running watcher refreshes automatically.
 
 `AutoGradient` is a deferred background action. Run it again through REAPER's running background scripts controls if you need to stop it.
@@ -57,15 +58,28 @@ To launch it automatically with REAPER, add the `AutoGradient` action to your ex
 
 Rules are evaluated from top to bottom:
 
-| Priority | Keyword | Base color |
-|---:|---|---|
-| 1 | `best` | Pastel red `#CA8080` |
-| 2 | `vox` | Pastel cyan `#76B4B4` |
-| 3 | `perc` | Pastel orange `#CB9D68` |
-| 4 | `guitar` | Pastel magenta `#BA7CAF` |
-| 5 | `bass` | Pastel green `#7FB48B` |
+| Priority | Keyword | Base color | Track icon |
+|---:|---|---|---|
+| 1 | `best` | Pastel red `#CA8080` | None |
+| 2 | `vox` | Pastel cyan `#76B4B4` | `mic.png` |
+| 3 | `perc` | Pastel orange `#CB9D68` | `drums.png` |
+| 4 | `guitar` | Pastel magenta `#BA7CAF` | `ac_guitar.png` |
+| 5 | `bass` | Pastel green `#7FB48B` | `bass4.png` |
 
 A track named `guitar_BEST` matches `best`, because `best` has the higher priority.
+
+## Track icons
+
+Each rule can optionally assign an icon from REAPER's `Data/track_icons` directory:
+
+1. Run `AutoGradientConfig`.
+2. Click **Choose...** in a rule's **Track icon** column.
+3. Filter by filename if desired.
+4. Click an icon thumbnail and save the rules.
+
+Icon paths are stored relative to REAPER's `Data/track_icons` directory, so the built-in icon assignments remain portable across different REAPER installations.
+
+Choosing **None** stops AutoGradient from managing the icon for that rule. Existing icons already applied to tracks are left unchanged.
 
 ## How the gradient works
 
@@ -75,7 +89,7 @@ A track named `guitar_BEST` matches `best`, because `best` has the higher priori
 
 ## Repository contents
 
-- `AutoGradient/AutoGradient.lua` — background watcher and track-coloring logic.
+- `AutoGradient/AutoGradient.lua` — background watcher and track-styling logic.
 - `AutoGradient/AutoGradientConfig.lua` — ReaImGui rule editor.
 - `AutoGradient/Settings.lua` — shared persistent settings module.
 - `index.xml` — repository index imported by ReaPack.

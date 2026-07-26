@@ -1,5 +1,5 @@
 --[[
-  @version 1.0.0
+  @version 1.1.0
   @noindex
 ]]
 
@@ -7,29 +7,34 @@ local Settings = {}
 
 local EXTSTATE_SECTION = "AutoGradient"
 local LEGACY_EXTSTATE_SECTION = "AutoGradiant"
-local SETTINGS_VERSION = "1"
+local SETTINGS_VERSION = "2"
 local MAX_RULE_COUNT = 200
 
 local DEFAULT_RULES = {
     {
         name = "best",
         color = {red = 202, green = 128, blue = 128},
+        icon = "",
     },
     {
         name = "vox",
         color = {red = 118, green = 180, blue = 180},
+        icon = "mic.png",
     },
     {
         name = "perc",
         color = {red = 203, green = 157, blue = 104},
+        icon = "drums.png",
     },
     {
         name = "guitar",
         color = {red = 186, green = 124, blue = 175},
+        icon = "ac_guitar.png",
     },
     {
         name = "bass",
         color = {red = 127, green = 180, blue = 139},
+        icon = "bass4.png",
     },
 }
 
@@ -56,6 +61,7 @@ local function copy_rule(rule)
     return {
         name = tostring(rule.name or ""),
         color = copy_color(rule.color),
+        icon = trim(rule.icon),
     }
 end
 
@@ -105,7 +111,7 @@ function Settings.validate_rules(rules)
         return false,
             "AutoGradient supports up to "
                 .. MAX_RULE_COUNT
-                .. " color rules."
+                .. " rules."
     end
 
     local names = {}
@@ -188,11 +194,16 @@ function Settings.load_rules()
                 "rule_" .. rule_index .. "_color"
             )
         )
+        local icon = reaper.GetExtState(
+            settings_section,
+            "rule_" .. rule_index .. "_icon"
+        )
 
         if name ~= "" and color then
             rules[#rules + 1] = {
                 name = name,
                 color = color,
+                icon = icon,
             }
         end
     end
@@ -217,6 +228,7 @@ function Settings.save_rules(rules)
         clean_rules[#clean_rules + 1] = {
             name = trim(rule.name),
             color = copy_color(rule.color),
+            icon = trim(rule.icon),
         }
     end
 
@@ -244,6 +256,12 @@ function Settings.save_rules(rules)
             EXTSTATE_SECTION,
             "rule_" .. rule_index .. "_color",
             Settings.color_to_hex(rule.color),
+            true
+        )
+        reaper.SetExtState(
+            EXTSTATE_SECTION,
+            "rule_" .. rule_index .. "_icon",
+            rule.icon,
             true
         )
     end

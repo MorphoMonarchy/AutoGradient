@@ -1,9 +1,9 @@
 --[[
   @description AutoGradient
-  @version 1.0.0
+  @version 1.1.0
   @author Morpho Monarchy Studios
   @changelog
-    Initial ReaPack release.
+    Added optional REAPER track-icon assignments to color rules.
   @link
     GitHub repository https://github.com/MorphoMonarchy/AutoGradient
   @provides
@@ -11,9 +11,9 @@
     [main] AutoGradientConfig.lua
     [nomain] Settings.lua
   @about
-    Automatically assigns color gradients to tracks using ordered,
-    case-insensitive name rules. Includes AutoGradientConfig, a ReaImGui
-    editor for creating, coloring, and prioritizing custom rules.
+    Automatically assigns color gradients and optional track icons using
+    ordered, case-insensitive name rules. Includes AutoGradientConfig, a
+    ReaImGui editor for creating and prioritizing custom rules.
 ]]
 
 ----------------------------------- SETTINGS ----------------------------------
@@ -128,8 +128,8 @@ local function group_tracks_by_rule()
     return groups
 end
 
-local function color_track_groups(groups)
-    local colored_track_count = 0
+local function style_track_groups(groups)
+    local styled_track_count = 0
 
     for _, group in ipairs(groups) do
         local group_size = #group.tracks
@@ -146,11 +146,21 @@ local function color_track_groups(groups)
                 "I_CUSTOMCOLOR",
                 color
             )
-            colored_track_count = colored_track_count + 1
+
+            if group.rule.icon and group.rule.icon ~= "" then
+                reaper.GetSetMediaTrackInfo_String(
+                    track,
+                    "P_ICON",
+                    group.rule.icon,
+                    true
+                )
+            end
+
+            styled_track_count = styled_track_count + 1
         end
     end
 
-    return colored_track_count
+    return styled_track_count
 end
 
 local function get_track_signature()
@@ -163,9 +173,19 @@ local function get_track_signature()
         if track then
             local _, track_name = reaper.GetTrackName(track)
             local track_guid = reaper.GetTrackGUID(track)
+            local _, track_icon = reaper.GetSetMediaTrackInfo_String(
+                track,
+                "P_ICON",
+                "",
+                false
+            )
 
             signature_parts[#signature_parts + 1] =
-                track_guid .. "\31" .. track_name
+                track_guid
+                    .. "\31"
+                    .. track_name
+                    .. "\31"
+                    .. (track_icon or "")
         end
     end
 
@@ -182,7 +202,7 @@ local function count_grouped_tracks(groups)
     return track_count
 end
 
-local function apply_track_colors()
+local function apply_track_styles()
     local groups = group_tracks_by_rule()
     local matched_track_count = count_grouped_tracks(groups)
 
@@ -194,12 +214,13 @@ local function apply_track_colors()
 
     local success, error_message = xpcall(
         function()
-            return color_track_groups(groups)
+            return style_track_groups(groups)
         end,
         debug.traceback
     )
 
     reaper.PreventUIRefresh(-1)
+    reaper.TrackList_AdjustWindows(false)
     reaper.UpdateArrange()
 
     if not success then
@@ -246,7 +267,8 @@ local function watch_tracks()
             or current_signature ~= last_track_signature
         then
             last_track_signature = current_signature
-            apply_track_colors()
+            apply_track_styles()
+            last_track_signature = get_track_signature()
         end
     end
 

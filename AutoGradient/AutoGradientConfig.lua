@@ -1,6 +1,7 @@
 --[[
-  @description AutoGradient - Edit color rules
-  @version 0.1.0
+  @description AutoGradientConfig - Edit color rules
+  @version 1.0.0
+  @noindex
   @about
     Edits the ordered, case-insensitive color rules used by AutoGradient.
     Requires ReaImGui 0.10 or newer.
@@ -16,7 +17,7 @@ if type(reaper.ImGui_GetBuiltinPath) ~= "function" then
             .. "since it was installed.\n\n"
             .. "Install ReaImGui through Extensions > ReaPack > "
             .. "Browse packages, restart REAPER, and run this editor again.",
-        "AutoGradient Editor",
+        "AutoGradientConfig",
         0
     )
     return
@@ -32,7 +33,7 @@ if not loaded then
     reaper.MB(
         "ReaImGui was found, but API version 0.10 could not be loaded.\n\n"
             .. tostring(ImGui),
-        "AutoGradient Editor",
+        "AutoGradientConfig",
         0
     )
     return

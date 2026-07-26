@@ -1,15 +1,19 @@
 --[[
-  @description AutoGradient - Color every track
-  @version 0.5.0
+  @description AutoGradient
+  @version 1.0.0
+  @author Morpho Monarchy Studios
+  @changelog
+    Initial ReaPack release.
+  @link
+    GitHub repository https://github.com/MorphoMonarchy/AutoGradient
+  @provides
+    [main] .
+    [main] AutoGradientConfig.lua
+    [nomain] Settings.lua
   @about
-    Assigns pastel color gradients to tracks based on keywords in their names.
-
-    Matching is case-insensitive. Rules are checked from top to bottom, and
-    the first matching rule wins. Matching tracks are grouped by rule, then
-    colored from light to dark in track-list order. Unmatched tracks are left
-    unchanged. While this action is running, it watches for track-name and
-    track-list changes and automatically refreshes the colors. Saved rules
-    from the AutoGradient editor are reloaded automatically.
+    Automatically assigns color gradients to tracks using ordered,
+    case-insensitive name rules. Includes AutoGradientConfig, a ReaImGui
+    editor for creating, coloring, and prioritizing custom rules.
 ]]
 
 ----------------------------------- SETTINGS ----------------------------------

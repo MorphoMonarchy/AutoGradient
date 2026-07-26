@@ -1,3 +1,8 @@
+--[[
+  @version 1.0.0
+  @noindex
+]]
+
 local Settings = {}
 
 local EXTSTATE_SECTION = "AutoGradient"

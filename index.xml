@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index version="1" name="AutoGradient">
+  <category name="AutoGradient">
+    <reapack
+      name="AutoGradient"
+      type="script"
+      desc="Automatic track color gradients using name rules">
+      <metadata>
+        <description><![CDATA[
+AutoGradient watches track names and applies ordered, case-insensitive color
+rules. Matching groups receive scalable light-to-dark gradients in track-list
+order. AutoGradientConfig provides a ReaImGui editor and color picker.
+        ]]></description>
+        <link rel="website">https://github.com/MorphoMonarchy/AutoGradient</link>
+      </metadata>
+      <version
+        name="1.0.0"
+        author="Morpho Monarchy Studios"
+        time="2026-07-26T00:35:59Z">
+        <changelog><![CDATA[
+Initial ReaPack release.
+        ]]></changelog>
+        <source main="main">https://raw.githubusercontent.com/MorphoMonarchy/AutoGradient/master/AutoGradient/AutoGradient.lua</source>
+        <source file="AutoGradientConfig.lua" main="main">https://raw.githubusercontent.com/MorphoMonarchy/AutoGradient/master/AutoGradient/AutoGradientConfig.lua</source>
+        <source file="Settings.lua">https://raw.githubusercontent.com/MorphoMonarchy/AutoGradient/master/AutoGradient/Settings.lua</source>
+      </version>
+    </reapack>
+  </category>
+</index>

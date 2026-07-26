@@ -36,6 +36,11 @@ local DEFAULT_RULES = {
         color = {red = 127, green = 180, blue = 139},
         icon = "bass4.png",
     },
+    {
+        name = "synth",
+        color = {red = 196, green = 196, blue = 196},
+        icon = "drumbox.png",
+    },
 }
 
 local function clamp_color_channel(value)

@@ -65,6 +65,7 @@ Rules are evaluated from top to bottom:
 | 3 | `perc` | Pastel orange `#CB9D68` | `drums.png` |
 | 4 | `guitar` | Pastel magenta `#BA7CAF` | `ac_guitar.png` |
 | 5 | `bass` | Pastel green `#7FB48B` | `bass4.png` |
+| 6 | `synth` | Light gray `#C4C4C4` | `drumbox.png` |
 
 A track named `guitar_BEST` matches `best`, because `best` has the higher priority.
 

@@ -33,6 +33,7 @@ Initial ReaPack release.
 Added optional REAPER track icons to rules.
 Added a searchable track-icon browser with thumbnail previews.
 Added default icons for the vox, perc, guitar, and bass rules.
+Added the synth rule and its default track icon.
         ]]></changelog>
         <source main="main">https://raw.githubusercontent.com/MorphoMonarchy/AutoGradient/master/AutoGradient/AutoGradient.lua</source>
         <source file="AutoGradientConfig.lua" main="main">https://raw.githubusercontent.com/MorphoMonarchy/AutoGradient/master/AutoGradient/AutoGradientConfig.lua</source>

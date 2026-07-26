@@ -60,12 +60,12 @@ Rules are evaluated from top to bottom:
 
 | Priority | Keyword | Base color | Track icon |
 |---:|---|---|---|
-| 1 | `best` | Pastel red `#CA8080` | None |
-| 2 | `vox` | Pastel cyan `#76B4B4` | `mic.png` |
-| 3 | `perc` | Pastel orange `#CB9D68` | `drums.png` |
-| 4 | `guitar` | Pastel magenta `#BA7CAF` | `ac_guitar.png` |
-| 5 | `bass` | Pastel green `#7FB48B` | `bass4.png` |
-| 6 | `synth` | Light gray `#C4C4C4` | `drumbox.png` |
+| 1 | `best` | Muted red `#8E5B5B` | None |
+| 2 | `vox` | Muted cyan `#477A7A` | `mic.png` |
+| 3 | `perc` | Muted orange `#92785A` | `drums.png` |
+| 4 | `guitar` | Muted magenta `#8C6485` | `ac_guitar.png` |
+| 5 | `bass` | Muted green `#5B7E64` | `bass4.png` |
+| 6 | `synth` | Muted gray `#787575` | `drumbox.png` |
 
 A track named `guitar_BEST` matches `best`, because `best` has the higher priority.
 

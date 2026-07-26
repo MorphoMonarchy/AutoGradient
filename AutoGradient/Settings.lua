@@ -13,32 +13,32 @@ local MAX_RULE_COUNT = 200
 local DEFAULT_RULES = {
     {
         name = "best",
-        color = {red = 202, green = 128, blue = 128},
+        color = {red = 142, green = 91, blue = 91},
         icon = "",
     },
     {
         name = "vox",
-        color = {red = 118, green = 180, blue = 180},
+        color = {red = 71, green = 122, blue = 122},
         icon = "mic.png",
     },
     {
         name = "perc",
-        color = {red = 203, green = 157, blue = 104},
+        color = {red = 146, green = 120, blue = 90},
         icon = "drums.png",
     },
     {
         name = "guitar",
-        color = {red = 186, green = 124, blue = 175},
+        color = {red = 140, green = 100, blue = 133},
         icon = "ac_guitar.png",
     },
     {
         name = "bass",
-        color = {red = 127, green = 180, blue = 139},
+        color = {red = 91, green = 126, blue = 100},
         icon = "bass4.png",
     },
     {
         name = "synth",
-        color = {red = 196, green = 196, blue = 196},
+        color = {red = 120, green = 117, blue = 117},
         icon = "drumbox.png",
     },
 }

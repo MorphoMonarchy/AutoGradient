@@ -25,7 +25,7 @@ local COLOR_RULES = Settings.load_rules()
 
 -- Each additional track widens the light-to-dark range. The cap prevents
 -- colors in large groups from becoming too close to pure white or black.
-local GRADIENT_STEP_PER_TRACK = 0.0555
+local GRADIENT_STEP_PER_TRACK = 0.0444
 local MAX_GRADIENT_AMOUNT = 0.45
 
 -- How often the script checks for renamed, duplicated, added, removed, or
